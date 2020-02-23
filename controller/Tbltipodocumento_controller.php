@@ -11,6 +11,10 @@ class Tbltipodocumento_controller{
     }
 
     public function index(){
+        require_once 'view/principal.php';
+    }
+
+    public function TipoDocumento(){
         $consulta = $this->model_tipodocumento->consultar("SELECT * FROM tbltipodocumento");
         require_once 'view/tbltipodocumento_view.php';
     }
@@ -25,19 +29,19 @@ class Tbltipodocumento_controller{
         $dato['id']  = $_POST["txtid"];
         $dato['nombre'] = $_POST["txtnombre"];
         $this->model_tipodocumento->actualizarTipoDocumento($dato);
-        $this->index();
+        $this->TipoDocumento();
     }
 
     public function eliminar(){
         $id = $_REQUEST['id'];
         $this->model_tipodocumento->eliminarTipoDocumento($id);
-        $this->index();
+        $this->TipoDocumento();
     }
 
     public function guardar(){
         $dato['nombre'] = $_POST["txtnombre"];
         $this->model_tipodocumento->insertTipoDocumento($dato);
-        $this->index();
+        $this->TipoDocumento();
     }
 }
 ?>
